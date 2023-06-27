@@ -3,15 +3,15 @@ import { Box, Button } from "@chakra-ui/react";
 import { v4 as uuidv4 } from "uuid";
 
 // Definindo a interface para um nó da árvore binária
-interface NodoBinario {
+interface ITreeNode {
   id: string;
   value: string;
-  children: NodoBinario[];
+  children: ITreeNode[];
 }
 
 const BinaryTree: React.FC = () => {
   const [expandedNodes, setExpandedNodes] = useState<string[]>([]);
-  const [tree, setTree] = useState<NodoBinario>({
+  const [tree, setTree] = useState<ITreeNode>({
     id: uuidv4(),
     value: "start",
     children: [],
@@ -25,20 +25,33 @@ const BinaryTree: React.FC = () => {
     }
   };
 
-  const addNode = (parentNode: NodoBinario) => {
-    const newNode: NodoBinario = {
+  const addNode = (parentNode: ITreeNode) => {
+    const newNodePosition = parentNode.children.length + 1;
+    const newNode: ITreeNode = {
       id: uuidv4(),
-      value: "new node",
+      value: newNodePosition.toString(),
       children: [],
     };
 
     parentNode.children.push(newNode);
     setTree({ ...tree });
     setExpandedNodes([...expandedNodes, newNode.id]);
+
+    updateChildValues(parentNode);
   };
 
-  const deleteNode = (nodeId: string, parentNode?: NodoBinario) => {
-    const removeNode = (node: NodoBinario) => {
+  const updateChildValues = (parentNode: ITreeNode) => {
+    const parentValueParts =
+      parentNode.value === "start" ? [] : parentNode.value.split(".");
+    parentNode.children.forEach((child, index) => {
+      const childValueParts = parentValueParts.concat((index + 1).toString());
+      child.value = childValueParts.join(".");
+      updateChildValues(child);
+    });
+  };
+
+  const deleteNode = (nodeId: string, parentNode?: ITreeNode) => {
+    const removeNode = (node: ITreeNode) => {
       if (node.id === nodeId) {
         if (parentNode) {
           const updatedChildren = parentNode.children.filter(
@@ -58,17 +71,77 @@ const BinaryTree: React.FC = () => {
   };
 
   const renderNodo = (
-    node: NodoBinario,
+    node: ITreeNode,
     level: number,
-    parentNode?: NodoBinario
+    parentNode?: ITreeNode
   ): JSX.Element => {
     const indentation = level * 20;
     const hasChildren = node.children.length > 0;
     const isExpanded = expandedNodes.includes(node.id);
 
+    const handleDragStart = (event: React.DragEvent<HTMLDivElement>) => {
+      event.dataTransfer.setData("text/plain", node.id);
+    };
+
+    const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
+      event.preventDefault();
+    };
+
+    const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
+      event.preventDefault();
+      const nodeId = event.dataTransfer.getData("text/plain");
+      const draggedNode = findNodeById(tree, nodeId);
+      if (draggedNode) {
+        deleteNode(draggedNode.id, findParentNode(tree, draggedNode.id));
+        addNode(node);
+      }
+    };
+
+    const findNodeById = (
+      startNode: ITreeNode,
+      id: string
+    ): ITreeNode | undefined => {
+      if (startNode.id === id) {
+        return startNode;
+      }
+      for (const child of startNode.children) {
+        const foundNode = findNodeById(child, id);
+        if (foundNode) {
+          return foundNode;
+        }
+      }
+      return undefined;
+    };
+
+    const findParentNode = (
+      startNode: ITreeNode,
+      id: string,
+      parentNode?: ITreeNode
+    ): ITreeNode | undefined => {
+      if (startNode.id === id) {
+        return parentNode;
+      }
+      for (const child of startNode.children) {
+        const foundNode = findParentNode(child, id, startNode);
+        if (foundNode) {
+          return foundNode;
+        }
+      }
+      return undefined;
+    };
     return (
-      <Box marginLeft={indentation} key={node.id}>
-        <Box display="flex" alignItems="center">
+      <Box
+        marginLeft={indentation}
+        key={node.id}
+        onDragOver={handleDragOver}
+        onDrop={handleDrop}
+      >
+        <Box
+          display="flex"
+          alignItems="center"
+          draggable
+          onDragStart={handleDragStart}
+        >
           <Box
             display="inline-flex"
             alignItems="center"
@@ -92,7 +165,7 @@ const BinaryTree: React.FC = () => {
           </Button>
           <Button
             marginLeft={2}
-            onClick={() => deleteNode(node.id, parentNode)}
+            onClick={() => deleteNode(node.id, findParentNode(tree, node.id))}
             borderRadius="md"
             bg="red.400"
             color="white"
@@ -114,8 +187,16 @@ const BinaryTree: React.FC = () => {
           )}
         </Box>
         {isExpanded &&
-          node.children.map((child) => (
-            <Box key={child.id}>{renderNodo(child, level + 1, node)}</Box>
+          node.children.map((child, index) => (
+            <Box
+              key={child.id}
+              position="relative"
+              paddingTop={2}
+              paddingLeft={20}
+              borderLeft="1px solid #ccc"
+            >
+              {renderNodo(child, level + 1, node)}
+            </Box>
           ))}
       </Box>
     );
