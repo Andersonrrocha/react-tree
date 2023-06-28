@@ -14,7 +14,7 @@
 
 ## 🔖 Sobre
 
-O projeto <a href="https://github.com/Andersonrrocha/react-tree">React Binary Tree</a> é uma SPA para criação de arvore binaria, possibilitando adição, remoção e movimentação de nós.
+O projeto <a href="https://github.com/Andersonrrocha/react-tree">React Binary Tree</a> é uma SPA para criação de arvore binaria, possibilitando adição, remoção e movimentação de nós, a aplicação foi desenvolvida sem o uso de bibliotecas para criação e manipulação da estrutura da arvore.
 
 ## ⚡ Funcionalidades
 
