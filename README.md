@@ -1,46 +1,73 @@
-# Getting Started with Create React App
+<img src="https://img.shields.io/npm/v/react?label=React"/> <img src="https://img.shields.io/github/languages/code-size/Andersonrrocha/react-comics"/> <img src="https://img.shields.io/github/license/Andersonrrocha/react-comics"/>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# 🌳 React Binary Tree
 
-## Available Scripts
+## Indice
 
-In the project directory, you can run:
+- [Sobre](#-sobre)
+- [Funcionalidades](#-funcionalidades)
+- [Tecnologias](#-tecnologias)
+  - [Principais Tecnologias](#-principais-tecnologias)
+  - [Recursos Adicionais](#-recursos-adicionais-utilizados)
+- [Como baixar o projeto](#-como-baixar-o-projeto)
+- [Autor](#-autor)
 
-### `npm start`
+## 🔖 Sobre
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+O projeto <a href="https://github.com/Andersonrrocha/react-tree">React Binary Tree</a> é uma SPA para criação de arvore binaria, possibilitando adição, remoção e movimentação de nós.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## ⚡ Funcionalidades
 
-### `npm test`
+##### &nbsp;&nbsp;&nbsp;✅ Adicionar nós
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+##### &nbsp;&nbsp;&nbsp;✅ Remover nós
 
-### `npm run build`
+##### &nbsp;&nbsp;&nbsp;✅ Movimentar nós
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+##### &nbsp;&nbsp;&nbsp;✅ Expandir e recolher grupos de nós
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## ⚒️ Tecnologias
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+As seguintes ferramentas foram usadas na construção do projeto:
 
-### `npm run eject`
+##### Principais Tecnologias
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- [React](https://pt-br.reactjs.org/)
+- [Uuid](https://github.com/thenativeweb/uuidv4)
+- [Chakra UI](https://github.com/chakra-ui/chakra-ui)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🗂 Como baixar o projeto
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```bash
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+    # Clonar o repositório
+    $ git clone https://github.com/Andersonrrocha/react-tree.git
 
-## Learn More
+    # Entrar no diretório
+    $ cd react-tree
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    # Instalar as dependências
+    $ npm install
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    # Iniciar o projeto
+    $ npm start
+
+     # Rodar testes unitarios
+    $ npm test
+
+    # Gerar build
+    $ npm run build
+```
+
+### Autor
+
+---
+
+<a href="https://github.com/Andersonrrocha">
+ <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/47790040?s=400&u=aebba8b4677071ece269291a65e56534db5cc52c&v=4" width="100px;" alt=""/>
+ <br />
+ <sub><b>Anderson Rocha</b></sub></a> <a href="https://github.com/Andersonrrocha" title="Github">🚀</a>
+
+Feito por um grande fã da Marvel chamado Anderson Rocha
+
+[![Linkedin Badge](https://img.shields.io/badge/-Anderson-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/anderson-rocha-852724127/)](https://www.linkedin.com/in/anderson-rocha-852724127/)

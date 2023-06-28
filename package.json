@@ -5,6 +5,7 @@
   "dependencies": {
     "@chakra-ui/icons": "^2.0.19",
     "@chakra-ui/react": "^2.7.1",
+    "@chakra-ui/react-types": "^2.0.7",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@testing-library/jest-dom": "^5.16.5",
@@ -12,9 +13,11 @@
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.36",
     "@types/react": "^18.2.14",
+    "@types/react-beautiful-dnd": "^13.1.4",
     "@types/react-dom": "^18.2.6",
     "framer-motion": "^10.12.17",
     "react": "^18.2.0",
+    "react-beautiful-dnd": "^13.1.1",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
     "typescript": "^4.9.5",
@@ -46,7 +49,7 @@
     ]
   },
   "devDependencies": {
-    "@testing-library/react": "^14.0.0",
+    "@types/react-sortable-tree": "^0.3.16",
     "@types/uuid": "^9.0.2"
   }
 }
